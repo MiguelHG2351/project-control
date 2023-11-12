@@ -1,40 +1,24 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, Pressable, Modal, View } from 'react-native'
-import { globalStyles } from './globalStyles'
+import React from 'react'
+import { StyleSheet, Text, Pressable, View } from 'react-native'
+import { globalStyles } from '../components/globalStyles' 
 
-import { ListOfCat } from './ListOfCat'
+import { ListOfCat } from '../components/ListOfCat'
 
-export const AddCatModal = () => {
-  const [ modalVisible, setModalVisible ] = useState(false)
+export default AddCat = ({ navigation }) => {
   
   return (
     <React.Fragment>
-      <Modal
-        animationType='fade'
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible)
-        }}
-      >
         <View style={styles.modalView}>
           <View style={styles.modalContainer}>
             <Text style={styles.modalTitle} accessibilityLabel='Add new pet'>Add new pet</Text>
             <ListOfCat/>
-            <Pressable style={styles.button} onPress={() => setModalVisible(false)}>
+            <Pressable style={styles.button} onPress={() => navigation.navigate('Home')}>
               <Text style={styles.buttonText} accessibilityLabel='Add new pet'>
               Add new pet
               </Text>
             </Pressable>
           </View>
         </View>
-      </Modal>
-      
-      <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
-        <Text style={styles.buttonText} accessibilityLabel='Add new pet'>
-        Add new pet
-        </Text>
-      </Pressable>
     </React.Fragment>
   )
 }
