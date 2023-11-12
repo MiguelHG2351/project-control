@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
+import { NavigationContainer } from '@react-navigation/native'
 
 import { AddCatModal } from './components/AddCatModal';
 
 export default function App() {
   return (
+    <NavigationContainer>
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1, backgroundColor: '#0099ff' }}>
         <View style={styles.container}>
@@ -16,6 +18,7 @@ export default function App() {
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
+    </NavigationContainer>
   );
 }
 

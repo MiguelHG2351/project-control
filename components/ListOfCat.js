@@ -39,7 +39,7 @@ const CatItem = ({ cat }) => {
 
 const styles = StyleSheet.create({
   catImage: {
-    width: 50,
-    height: 50,
+    width: 150,
+    height: 150,
   },
 })
