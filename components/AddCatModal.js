@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, Pressable, Modal, View } from 'react-native'
 import { globalStyles } from './globalStyles'
 
+import { ListOfCat } from './ListOfCat'
+
 export const AddCatModal = () => {
   const [ modalVisible, setModalVisible ] = useState(false)
   
@@ -17,7 +19,8 @@ export const AddCatModal = () => {
       >
         <View style={styles.modalView}>
           <View style={styles.modalContainer}>
-            <Text style={styles.modalTitle}>Modal</Text>
+            <Text style={styles.modalTitle} accessibilityLabel='Add new pet'>Add new pet</Text>
+            <ListOfCat/>
             <Pressable style={styles.button} onPress={() => setModalVisible(false)}>
               <Text style={styles.buttonText} accessibilityLabel='Add new pet'>
               Add new pet
@@ -46,10 +49,16 @@ const styles = StyleSheet.create({
   },
   modalView: {
     ...globalStyles.centeredView,
+    padding: 80,
   },
   modalContainer: {
+    flex: 1,
     backgroundColor: '#fff',
-    padding: 16,
+    borderRadius: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 32,
+    paddingBottom: 32,
   },
   modalTitle: {
     fontSize: 24,
