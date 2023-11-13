@@ -15,6 +15,7 @@ export const ListOfCat = () => {
         data={[
           ...cats
         ]}
+        keyExtractor={(item) => item.id}
         ItemSeparatorComponent={() => <View style={{height: 6}} />}
         renderItem={({ item }) => <CatItem cat={item} />}
         ListFooterComponent={() => (

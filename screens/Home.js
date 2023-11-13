@@ -1,19 +1,29 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+
+import CatHistory from '../components/CatHistory';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 export default function Home({ navigation }) {
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>My pets</Text>
-      <Text>Add up to 5 pets, and manage their fedding</Text>
-      <Pressable style={styles.button} onPress={() => navigation.navigate('Cats')}>
-        <Text style={styles.buttonText} accessibilityLabel='Add new pet'>
-        Add a new pet
-        </Text>
-      </Pressable>
-      <StatusBar style="auto" />
-    </View>
+      <ScrollView nestedScrollEnabled={true} style={{ paddingBottom: 44 }}>
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.title}>My pets</Text>
+            <Text style={styles.subtitle}>Add up to 5 pets, and manage their fedding</Text>
+          </View>
+            <CatHistory navigation={navigation} />
+            <CatHistory navigation={navigation} />
+            <Pressable style={styles.newCatbutton} onPress={() => navigation.navigate('Cats')}>
+              <Text style={styles.newCatText} accessibilityLabel='Add new pet'>
+              Add a new pet
+              </Text>
+            </Pressable>
+          <StatusBar style="auto" />
+        </View>
+      </ScrollView>
   )
 }
 
@@ -27,18 +37,24 @@ const styles = StyleSheet.create({
     
   },
   title: {
-    fontSize: 32
+    fontSize: 32,
+    fontWeight: '700',
   },
-  buttonText: {
+  subtitle: {
+    marginTop: 12,
+    marginBottom: 32,
+  },
+  newCatText: {
     color: '#fff',
     fontSize: 18,
     textAlign: 'center',
   },
-  button: {
+  newCatbutton: {
     textTransform: 'capitalize',
     borderRadius: 8,
     width: '100%',
     backgroundColor: '#0086ff',
-    padding: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 12,
   }
 });
