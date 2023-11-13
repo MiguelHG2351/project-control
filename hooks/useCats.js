@@ -13,9 +13,10 @@ export const useCats = () => {
 
   async function loadMoreCats() {
     const catArray = []
-    const response = await getCats(20, page)
+    const response = await getCats(10, page)
 
     for (const cat of response) {
+      if(cat.name === 'Malayan') continue;
       const catData = {...cat}
       // console.log('loadcat', cat)
       // if (!cat.image) {
