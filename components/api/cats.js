@@ -13,7 +13,7 @@ export const getCatImage = async (catId) => {
     return await request.json()
   }
   catch (error) {
-    return { error: 'Error fetching cat image' }
+    return { error: 'Error fetching cat image', err: error }
   }
 }
 

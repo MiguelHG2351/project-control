@@ -29,26 +29,33 @@ export const ListOfCat = () => {
 
 
 const CatItem = ({ cat }) => {
-  // const [ catImage, setCatImage ] = useState({})
+  const [ catImage, setCatImage ] = useState({})
   
-  // useEffect(() => {
-  //   getCatImage(cat.id).then(catImage => {
-  //     setCatImage(catImage[0])
-  //   }).catch(error => {
-  //     console.log(error)
-  //   })
-  // }, [])
+  useEffect(() => {
+    getCatImage(cat.id).then(catImage => {
+      console.log('catImage', cat.name, cat.id, catImage)
+      setCatImage(catImage[0])
+    }).catch(error => {
+      console.log('Erroooor')
+      console.log(error)
+    })
+  }, [])
 
   // const imageURI = `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`
-  console.log('listofcat', cat.name, cat.image)
+  
   return (
     <View style={styles.itemView}>
-      <Image 
-        source={{
-          uri: cat.image.url
-        }}
-        style={styles.catImage}
-      />
+      {
+          !catImage.url ?
+          <ActivityIndicator size="large" color="#0000ff" />
+          :
+          <Image 
+            source={{
+              uri: catImage.url || 'https://cdn2.thecatapi.com/images/MTYwODk3Mg.jpg',
+            }}
+            style={styles.catImage}
+          />
+      }
       <View style={styles.itemTextContainer}>
         <View style={{ flexDirection: 'row', flex: 1, flexWrap: 'wrap' }}>
           <Text style={styles.itemTitle} ellipsizeMode='head' numberOfLines={2}>{cat.name}</Text>

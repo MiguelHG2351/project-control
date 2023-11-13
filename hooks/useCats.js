@@ -17,13 +17,13 @@ export const useCats = () => {
 
     for (const cat of response) {
       const catData = {...cat}
-      console.log('loadcat', cat)
-      if (!cat.image) {
-        console.log('loadcatInner', cat.name)
-        let catDataImage = await getCatImage(cat.id)
-        catData.image = catDataImage[0]
-        console.log('loadcatInner', catData.image)
-      }
+      // console.log('loadcat', cat)
+      // if (!cat.image) {
+      //   console.log('loadcatInner', cat.name)
+      //   let catDataImage = await getCatImage(cat.id)
+      //   catData.image = catDataImage[0]
+      //   console.log('loadcatInner', catData.image)
+      // }
       // const catImage = await getCatImage(cat.id)
       
       // console.log(JSON.stringify(catImage))
