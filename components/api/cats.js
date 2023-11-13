@@ -2,7 +2,7 @@ import { credentials } from './credentials'
 
 export const getCatImage = async (catId) => {
   const TOKEN = credentials['cat-api']
-  const URL = `https://api.thecatapi.com/v1/images/search?breed_ids=${catId}&limit=2`
+  const URL = `https://api.thecatapi.com/v1/images/search?breed_ids=${catId}&limit=4`
 
   try {
     const request = await fetch(URL, {

@@ -1,14 +1,11 @@
 import { View, FlatList, Text, Image, StyleSheet, ActivityIndicator } from 'react-native'
 import { useEffect, useState } from 'react'
-import { getCats, getCatImage } from './api/cats'
+import { getCatImage } from './api/cats'
+import { useCats } from '../hooks/useCats'
 
 export const ListOfCat = () => {
-  const [ cats, setCats ] = useState([])
-
-  useEffect(() => {
-    getCats(20)
-    .then(cats => setCats(cats))
-  }, [])
+  // const [ cats, setCats ] = useState([])
+  const { cats, loadMoreCats } = useCats()
 
   return (
     <View style={{ flex: 1, flexDirection: 'column', alignSelf: 'stretch' }}>
@@ -23,6 +20,8 @@ export const ListOfCat = () => {
         ListFooterComponent={() => (
           <ActivityIndicator size="large" color="#0000ff" />
         )}
+        onEndReached={loadMoreCats}
+        onEndReachedThreshold={0.1}
       />
     </View>
   )
@@ -30,31 +29,26 @@ export const ListOfCat = () => {
 
 
 const CatItem = ({ cat }) => {
-  const [ catImage, setCatImage ] = useState({})
+  // const [ catImage, setCatImage ] = useState({})
   
-  useEffect(() => {
-    getCatImage(cat.id).then(catImage => {
-      setCatImage(catImage[0])
-    }).catch(error => {
-      console.log(error)
-    })
-  }, [])
+  // useEffect(() => {
+  //   getCatImage(cat.id).then(catImage => {
+  //     setCatImage(catImage[0])
+  //   }).catch(error => {
+  //     console.log(error)
+  //   })
+  // }, [])
 
   // const imageURI = `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`
-  
+  console.log('listofcat', cat.name, cat.image)
   return (
     <View style={styles.itemView}>
-      {
-          !catImage.url ?
-          <ActivityIndicator size="large" color="#0000ff" />
-          :
-          <Image 
-            source={{
-              uri: catImage.url || 'https://cdn2.thecatapi.com/images/MTYwODk3Mg.jpg',
-            }}
-            style={styles.catImage}
-          />
-      }
+      <Image 
+        source={{
+          uri: cat.image.url
+        }}
+        style={styles.catImage}
+      />
       <View style={styles.itemTextContainer}>
         <View style={{ flexDirection: 'row', flex: 1, flexWrap: 'wrap' }}>
           <Text style={styles.itemTitle} ellipsizeMode='head' numberOfLines={2}>{cat.name}</Text>
