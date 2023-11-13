@@ -29,29 +29,17 @@ export const ListOfCat = () => {
 
 
 const CatItem = ({ cat }) => {
-  const [ catImage, setCatImage ] = useState({})
-  
-  useEffect(() => {
-    getCatImage(cat.id).then(catImage => {
-      console.log('catImage', cat.name, cat.id, catImage)
-      setCatImage(catImage[0])
-    }).catch(error => {
-      console.log('Erroooor')
-      console.log(error)
-    })
-  }, [])
-
   // const imageURI = `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`
   
   return (
     <View style={styles.itemView}>
       {
-          !catImage.url ?
+          !cat.image ?
           <ActivityIndicator size="large" color="#0000ff" />
           :
           <Image 
             source={{
-              uri: catImage.url || 'https://cdn2.thecatapi.com/images/MTYwODk3Mg.jpg',
+              uri: cat.image.url || 'https://cdn2.thecatapi.com/images/MTYwODk3Mg.jpg',
             }}
             style={styles.catImage}
           />

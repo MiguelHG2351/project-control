@@ -19,12 +19,12 @@ export const useCats = () => {
       if(cat.name === 'Malayan') continue;
       const catData = {...cat}
       // console.log('loadcat', cat)
-      // if (!cat.image) {
-      //   console.log('loadcatInner', cat.name)
-      //   let catDataImage = await getCatImage(cat.id)
-      //   catData.image = catDataImage[0]
-      //   console.log('loadcatInner', catData.image)
-      // }
+      if (!cat.image) {
+        // console.log('loadcatInner', cat.name)
+        let catDataImage = await getCatImage(cat.id)
+        catData.image = catDataImage[0]
+        // console.log('loadcatInner', catData.image)
+      }
       // const catImage = await getCatImage(cat.id)
       
       // console.log(JSON.stringify(catImage))
