@@ -56,8 +56,13 @@ const CatItem = ({ cat }) => {
           />
       }
       <View style={styles.itemTextContainer}>
-        <Text style={styles.itemTitle} ellipsizeMode='head' numberOfLines={2}>{cat.name}</Text>
-        <Text>{cat.origin}</Text>
+        <View style={{ flexDirection: 'row', flex: 1, flexWrap: 'wrap' }}>
+          <Text style={styles.itemTitle} ellipsizeMode='head' numberOfLines={2}>{cat.name}</Text>
+          <Text>{cat.origin}</Text>
+        </View>
+        <View>
+          <Text>{cat.temperament}</Text>
+        </View>
       </View>
     </View>
   )
@@ -75,20 +80,18 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     padding: 10,
-    width: '100%',
     borderRadius: 8,
     overflow: 'hidden', 
   },
   itemTextContainer: {
-    flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
     flex: 1,
     paddingRight: 10,
   },
   itemTitle: {
     width: '100%',
     flexGrow: 0,
-    
     fontSize: 24,
     fontWeight: 'bold'
   }
