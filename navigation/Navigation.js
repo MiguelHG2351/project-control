@@ -14,7 +14,7 @@ export default function Navigation() {
       />
 
       <Stack.Screen
-        name="Cat"
+        name="Cats"
         component={AddCat}
       />
     </Stack.Navigator>

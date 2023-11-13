@@ -7,8 +7,7 @@ export default function Home({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>My pets</Text>
       <Text>Add up to 5 pets, and manage their fedding</Text>
-      
-      <Pressable style={styles.button} onPress={() => navigation.navigate('Cat')}>
+      <Pressable style={styles.button} onPress={() => navigation.navigate('Cats')}>
         <Text style={styles.buttonText} accessibilityLabel='Add new pet'>
         Add a new pet
         </Text>
@@ -21,14 +20,10 @@ export default function Home({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'start',
     paddingTop: 8,
     paddingLeft: 16,
     paddingRight: 16,
-    gap: 10
     
   },
   title: {

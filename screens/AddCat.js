@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, Pressable, View } from 'react-native'
+import { StyleSheet, Text, Pressable, View, TextInput } from 'react-native'
 import { globalStyles } from '../components/globalStyles' 
 
 import { ListOfCat } from '../components/ListOfCat'
@@ -7,19 +7,19 @@ import { ListOfCat } from '../components/ListOfCat'
 export default AddCat = ({ navigation }) => {
   
   return (
-    <React.Fragment>
-        <View style={styles.modalView}>
-          <View style={styles.modalContainer}>
-            <Text style={styles.modalTitle} accessibilityLabel='Add new pet'>Add new pet</Text>
-            <ListOfCat/>
-            <Pressable style={styles.button} onPress={() => navigation.navigate('Home')}>
-              <Text style={styles.buttonText} accessibilityLabel='Add new pet'>
-              Add new pet
-              </Text>
-            </Pressable>
-          </View>
-        </View>
-    </React.Fragment>
+    <View style={styles.modalView}>
+      <Text style={styles.modalTitle} accessibilityLabel='Add new pet'>Add new pet</Text>
+      <TextInput
+        style={{height: 40}}
+        placeholder="Find your catito!"
+      />
+      <ListOfCat/>
+      <Pressable style={styles.button} onPress={() => navigation.navigate('Home')}>
+        <Text style={styles.buttonText} accessibilityLabel='Add new pet'>
+        Add new pet
+        </Text>
+      </Pressable>
+    </View>
   )
 }
 
@@ -33,16 +33,10 @@ const styles = StyleSheet.create({
   },
   modalView: {
     ...globalStyles.centeredView,
-    padding: 80,
-  },
-  modalContainer: {
-    flex: 1,
     backgroundColor: '#fff',
-    borderRadius: 16,
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingTop: 32,
-    paddingBottom: 32,
+    paddingLeft: 12,
+    paddingRight: 12,
+    gap: 6
   },
   modalTitle: {
     fontSize: 24,
