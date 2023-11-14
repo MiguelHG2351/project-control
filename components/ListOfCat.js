@@ -1,13 +1,12 @@
-import { View, FlatList, Text, Image, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, FlatList, Text, Image, StyleSheet, ActivityIndicator, Pressable } from 'react-native'
 import { useGetMyCatsQuery } from './api'
 import { useCats } from '../hooks/useCats'
+import { useNavigation } from '@react-navigation/native'
 
 export const ListOfCat = () => {
   // const [ cats, setCats ] = useState([])
   const { cats, loadMoreCats } = useCats()
   const { data, isLoading } = useGetMyCatsQuery()
-
-  if(!isLoading) console.log(JSON.stringify(data))
 
   return (
     <View style={{ flex: 1, flexDirection: 'column', alignSelf: 'stretch' }}>
@@ -19,7 +18,7 @@ export const ListOfCat = () => {
         ]}
         // keyExtractor={(item) => item.id}
         ItemSeparatorComponent={() => <View style={{height: 6}} />}
-        renderItem={({ item }) => <CatItem key={item.id} cat={item} />}
+        renderItem={({ item }) => <CatItem key={`${item.id}_${item.name}`} cat={item} />}
         ListFooterComponent={() => (
           <ActivityIndicator size="large" color="#0000ff" />
         )}
@@ -32,30 +31,33 @@ export const ListOfCat = () => {
 
 
 const CatItem = ({ cat }) => {
+  const navigation = useNavigation()
+
   // const imageURI = `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`
-  
   return (
-    <View style={styles.itemView}>
-      {
-          !cat.image ?
-          <ActivityIndicator size="large" color="#0000ff" />
-          :
-          <Image 
-            source={{
-              uri: cat.image.url || 'https://cdn2.thecatapi.com/images/MTYwODk3Mg.jpg',
-            }}
-            style={styles.catImage}
-          />
-      }
-      <View style={styles.itemTextContainer}>
-        <View style={{ flexDirection: 'row', flex: 1, flexWrap: 'wrap' }}>
-          <Text style={styles.itemTitle} ellipsizeMode='head' numberOfLines={2}>{cat.name}</Text>
-          <Text>{cat.origin}</Text>
+    <View >
+      <Pressable style={styles.itemView} onPress={() => navigation.navigate('CatInfo', { cat: cat })}>
+        {
+            !cat.image ?
+            <ActivityIndicator size="large" color="#0000ff" />
+            :
+            <Image 
+              source={{
+                uri: cat.image.url || 'https://cdn2.thecatapi.com/images/MTYwODk3Mg.jpg',
+              }}
+              style={styles.catImage}
+            />
+        }
+        <View style={styles.itemTextContainer}>
+          <View style={{ flexDirection: 'row', flex: 1, flexWrap: 'wrap' }}>
+            <Text style={styles.itemTitle} ellipsizeMode='head' numberOfLines={2}>{cat.name}</Text>
+            <Text>{cat.origin}</Text>
+          </View>
+          <View>
+            <Text>{cat.temperament}</Text>
+          </View>
         </View>
-        <View>
-          <Text>{cat.temperament}</Text>
-        </View>
-      </View>
+      </Pressable>
     </View>
   )
 }

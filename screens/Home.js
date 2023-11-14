@@ -6,7 +6,6 @@ import CatHistory from '../components/CatHistory';
 export default function Home({ navigation }) {
   // const [ cats, update, remove ] = useIndex(postCats, 'object', storage)
   
-  // console.log(JSON.stringify(cats));
 
   return (
       <ScrollView nestedScrollEnabled={true} style={{ paddingBottom: 44 }}>
