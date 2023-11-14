@@ -1,11 +1,13 @@
 import { View, FlatList, Text, Image, StyleSheet, ActivityIndicator } from 'react-native'
-import { useEffect, useState } from 'react'
-import { getCatImage } from './api/cats'
+import { useGetMyCatsQuery } from './api'
 import { useCats } from '../hooks/useCats'
 
 export const ListOfCat = () => {
   // const [ cats, setCats ] = useState([])
   const { cats, loadMoreCats } = useCats()
+  const { data, isLoading } = useGetMyCatsQuery()
+
+  if(!isLoading) console.log(JSON.stringify(data))
 
   return (
     <View style={{ flex: 1, flexDirection: 'column', alignSelf: 'stretch' }}>
