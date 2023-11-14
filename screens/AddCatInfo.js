@@ -13,11 +13,14 @@ export function AddCatInfo(props) {
     console.log(cat.name)
     console.log(cat.id)
 
-    createUser({ catId: cat.name, catName: cat.name }).unwrap()
+    createUser({ catId: cat.id, catName: catName, catImage: cat.image.url }).unwrap()
     .then(() => {
-      ToastAndroid.show(`Cat ${cat.name} saved!`, ToastAndroid.SHORT)
+      ToastAndroid.show(`Cat ${catName} saved!`, ToastAndroid.SHORT)
       navigation.navigate('Home')
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err)
+      ToastAndroid.show(`Error: ${err.error}`, ToastAndroid.SHORT)
+    })
 
   }
 

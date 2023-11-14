@@ -13,9 +13,10 @@ export const api = createApi({
       providesTags: ['Cats'],
     }),
     addMyCat: builder.mutation({
-      query: ({ catId, catName }) => ({
-        url: `/add-cat?catId=${catId}&catName=${catName}`,
+      query: (data) => ({
+        url: `/add-cat`,
         method: 'POST',
+        body: data
       }),
       invalidatesTags: ['Cats'],
     }),

@@ -1,11 +1,11 @@
 import { Pressable, StyleSheet, Text, View, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { useGetMyCatsQuery } from '../components/api';
 
 import CatHistory from '../components/CatHistory';
 
 export default function Home({ navigation }) {
-  // const [ cats, update, remove ] = useIndex(postCats, 'object', storage)
-  
+  const { data=[], isLoading } = useGetMyCatsQuery()
 
   return (
       <ScrollView nestedScrollEnabled={true} style={{ paddingBottom: 44 }}>
@@ -14,8 +14,11 @@ export default function Home({ navigation }) {
             <Text style={styles.title}>My pets</Text>
             <Text style={styles.subtitle}>Add up to 5 pets, and manage their fedding</Text>
           </View>
-            <CatHistory navigation={navigation} />
-            <CatHistory navigation={navigation} />
+            {data.map((cat) => (
+              <View key={cat.id}>
+                <CatHistory cat={cat} navigation={navigation} />
+              </View>
+            ))}
             <Pressable style={styles.newCatbutton} onPress={() => navigation.navigate('Cats')}>
               <Text style={styles.newCatText} accessibilityLabel='Add new pet'>
               Add a new pet
