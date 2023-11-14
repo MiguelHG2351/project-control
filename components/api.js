@@ -12,14 +12,21 @@ export const api = createApi({
       }),
       providesTags: ['Cats'],
     }),
+    addMyCat: builder.mutation({
+      query: ({ catId, catName }) => ({
+        url: `/add-cat?catId=${catId}&catName=${catName}`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['Cats'],
+    }),
     getAllCats: builder.query({
       query: ({ limit=10, page=1 }) => ({
         url: `/cats?limit=${limit}&page=${page}`,
         method: 'GET',
       }),
       providesTags: ['Cats'],
-    })
+    }),
   })
 })
 
-export const { useGetMyCatsQuery, useLazyGetAllCatsQuery } = api
+export const { useGetMyCatsQuery, useLazyGetAllCatsQuery, useAddMyCatMutation } = api

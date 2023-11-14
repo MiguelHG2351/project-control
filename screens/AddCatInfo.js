@@ -1,12 +1,26 @@
 import React from 'react'
-import { ScrollView, Text, View, Image, TextInput, StyleSheet, Pressable } from 'react-native'
+import { ScrollView, Text, View, Image, TextInput, StyleSheet, Pressable, ToastAndroid } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { useAddMyCatMutation } from '../components/api'
 
-export function CatInfo(props) {
+export function AddCatInfo(props) {
   const { cat } = props.route.params
   const [catName, onChangeCatName ] = React.useState(cat?.name) // [state, setState
+  const [ createUser ] = useAddMyCatMutation()
   const navigation = useNavigation()
-  
+
+  function handleAddNewCat() {
+    console.log(cat.name)
+    console.log(cat.id)
+
+    createUser({ catId: cat.name, catName: cat.name }).unwrap()
+    .then(() => {
+      ToastAndroid.show(`Cat ${cat.name} saved!`, ToastAndroid.SHORT)
+      navigation.navigate('Home')
+    }).catch(err => console.log(err))
+
+  }
+
   return (
     <ScrollView>
       <View style={{ paddingHorizontal: 24 }}>
@@ -32,7 +46,7 @@ export function CatInfo(props) {
           </View>
 
           <View style={{ flexDirection: 'row' }}>
-            <Pressable style={styles.saveCatBtn}>
+            <Pressable style={styles.saveCatBtn} onPress={handleAddNewCat}>
               <Text style={styles.saveCatBtnText}>Save cat</Text>
             </Pressable>
           </View>
