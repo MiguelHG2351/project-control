@@ -7,7 +7,14 @@ export const api = createApi({
   endpoints: (builder) => ({
     getMyCats: builder.query({
       query: () => ({
-        url: '/my-cats',
+        url: `/my-cats`,
+        method: 'GET',
+      }),
+      providesTags: ['Cats'],
+    }),
+    getAllCats: builder.query({
+      query: ({ limit=10, page=1 }) => ({
+        url: `/cats?limit=${limit}&page=${page}`,
         method: 'GET',
       }),
       providesTags: ['Cats'],
@@ -15,4 +22,4 @@ export const api = createApi({
   })
 })
 
-export const { useGetMyCatsQuery } = api
+export const { useGetMyCatsQuery, useLazyGetAllCatsQuery } = api
