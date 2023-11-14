@@ -2,10 +2,11 @@ import { Pressable, StyleSheet, Text, View, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import CatHistory from '../components/CatHistory';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
 
 export default function Home({ navigation }) {
+  // const [ cats, update, remove ] = useIndex(postCats, 'object', storage)
+  
+  // console.log(JSON.stringify(cats));
 
   return (
       <ScrollView nestedScrollEnabled={true} style={{ paddingBottom: 44 }}>

@@ -15,9 +15,9 @@ export const ListOfCat = () => {
         data={[
           ...cats
         ]}
-        keyExtractor={(item) => item.id}
+        // keyExtractor={(item) => item.id}
         ItemSeparatorComponent={() => <View style={{height: 6}} />}
-        renderItem={({ item }) => <CatItem cat={item} />}
+        renderItem={({ item }) => <CatItem key={item.id} cat={item} />}
         ListFooterComponent={() => (
           <ActivityIndicator size="large" color="#0000ff" />
         )}
