@@ -23,7 +23,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.controlapp"
+      "package": "com.anonymous.controlapp",
+      "permissions": [
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_CONNECT"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,10 +39,18 @@
         "@config-plugins/react-native-ble-plx",
         {
           "isBackgroundEnable": true,
-          "modes": ["peripheral", "central"],
+          "modes": [
+            "peripheral",
+            "central"
+          ],
           "bluetoothAlwaysPermission": "Allow $(PRODUCT_NAME) to connect to bluetooth devices"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "67de7a71-6d9a-4a72-a45e-00ca22e0b74a"
+      }
+    }
   }
 }

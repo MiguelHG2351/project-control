@@ -5,7 +5,7 @@ import { useAddMyCatMutation } from '../components/api'
 
 export function AddCatInfo(props) {
   const { cat } = props.route.params
-  const [catName, onChangeCatName ] = React.useState(cat?.name) // [state, setState
+  const [catName, onChangeCatName ] = React.useState(cat.name) // [state, setState
   const [ createUser ] = useAddMyCatMutation()
   const navigation = useNavigation()
 
