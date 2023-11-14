@@ -20,6 +20,14 @@ export const api = createApi({
       }),
       invalidatesTags: ['Cats'],
     }),
+    addCatRegister: builder.mutation({
+      query: (data) => ({
+        url: `/add-register`,
+        method: 'POST',
+        body: data
+      }),
+      invalidatesTags: ['Cats'],
+    }),
     getAllCats: builder.query({
       query: ({ limit=10, page=1 }) => ({
         url: `/cats?limit=${limit}&page=${page}`,
@@ -27,7 +35,20 @@ export const api = createApi({
       }),
       providesTags: ['Cats'],
     }),
+    getRegisterCat: builder.query({
+      query: ({ catId }) => ({
+        url: `/cat-register?catId=${catId}`,
+        method: 'GET',
+      }),
+      providesTags: ['Cats'],
+    }),
   })
 })
 
-export const { useGetMyCatsQuery, useLazyGetAllCatsQuery, useAddMyCatMutation } = api
+export const {
+  useGetMyCatsQuery,
+  useLazyGetAllCatsQuery,
+  useAddMyCatMutation,
+  useAddCatRegisterMutation,
+  useGetRegisterCatQuery,
+} = api
